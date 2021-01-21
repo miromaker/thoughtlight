@@ -1,2 +1,2 @@
 # thoughtlight
-Twitter word frequency visualization project
+Twitter word frequency visualization project for fun
