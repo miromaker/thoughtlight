@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"  href='reset.css'>
+    <link rel="stylesheet" type="text/css" href='style.css'>
+    
+  </head>
+
+  
+  <body>
+<!-- Header -->
+<header>
+  <h1>ThoughtLight</h1>
+  <button type="button" id="switch">!</button>
+</header>
+
+  <!-- Main Content -->
+  <div class = "lightbox">
+    <h3>More people are currently talking about:</h3>
+
+    
+ 
+
+      <div id = "light1">
+        <div class = "lightext">
+          <div class="container">
+            <p>Happy: <br> <span id="counter1"></span> posts</p>
+          </div>
+        </div>
+      </div>
+      <div id = "light2">
+        <div class = "lightext">
+          <div class="container">
+            <p>Sad: <br> <span id="counter2"></span> posts</p>
+          </div>
+        </div>
+      </div>
+
+  <div id = "secondheader">
+    <h2>Glimpse into the global mind.</h2>
+    <p>WE LIVE IN AN AGE OF EXPONENTIAL INFORMATION CREATION AND CONNECTIVITY ONLINE, ALLOWING US TO SEE THINKING AT GLOBAL SCALE. THE BRIGHTER THE TERM, THE MORE PEOPLE ON TWITTER ARE USING IT AT THIS VERY MOMENT.</p>
+  </div>
+
+</div>
+
+
+  <div id = "requests">
+    <h3>Want to compare other words?</h3>
+    <button type="button" id="request">Make a request</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div id="footertext">
+      <p>Brought to you by <a href="https://www.miromade.com" target=”_blank”>Miroslav Lysyuk</a> (C) 2021</p>
+    </div>
+  </footer>
+
+    <!-- <div class="container">
+      <div id="tweetStream"></div>
+    </div> -->
+
+
+    
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+      integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // const tweetStream = document.getElementById('tweetStream')
+      // const counter = document.getElementById('counter')
+
+      const socket = io()
+
+      const tweets = []
+      let word1count = 0; 
+      let word2count = 0;
+
+
+      socket.on('connect', () => {
+        console.log('Connected to server...')
+      })
+
+
+      socket.on('tweet', (tweet) => {
+       
+        // console.log(tweet);
+        const tweetData = {
+          id: tweet.data.id,
+          text: tweet.data.text,
+          username: `@${tweet.includes.users[0].username}`
+        }
+
+        const str = tweet.data.text; 
+
+      
+
+        if(str.search("happy") != -1){
+          word1count++
+        } else {
+          word2count++
+        }
+      
+      let ratio1 = word1count/(word1count + word2count);
+      let ratio2 = word2count/(word1count + word2count);
+
+
+
+        document.getElementById('counter1').innerHTML = word1count;
+        document.getElementById('counter2').innerHTML = word2count;
+
+        document.getElementById("light1").style.opacity = ratio1;
+        document.getElementById("light2").style.opacity = ratio2;
+
+
+
+        // document.getElementById("counter").style.opacity = 1 * (1/count); 
+
+
+
+   
+
+        // const tweetEl = document.createElement('div')
+        // const counterNumber = document.createElement('div')
+
+        
+
+        // tweetEl.className = 'card my-4'
+        // tweetEl.innerHTML = `
+        //     <div class="card-body">
+        //         <h5 class="card-title">${tweetData.text}</h5>
+        //         <h6 class="card-subtitle mb-2 text-muted">${tweetData.username}</h6>
+        //         <h6 class="card-subtitle mb-2 text-muted">${count}</h6>
+
+                
+        //         <a class="btn btn-primary mt-3" href="https://twitter.com/${tweetData.username}/status/${tweetData.id}">
+        //             <i class="fab fa-twitter"></i> Go To Tweet    
+        //         </a>
+        //     </div>
+        // `
+
+        // counterNumber.innerHTML = `
+        // <div class="card-body">  
+        //   <h6>${count}</h6>
+        // </div>  
+        // `
+
+
+        // tweetStream.appendChild(tweetEl)
+          // counter.appendChild(counterNumber); 
+
+        // setTimeout(() => tweetEl.remove(), 5000)
+      })
+    </script>
+  </body>
+</html>
