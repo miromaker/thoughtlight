@@ -128,6 +128,17 @@ a {
     padding: 20px; 
 }
 
+
+.request {
+    display: inline;
+    text-decoration: none;
+    padding: 20px; 
+    margin: 20px;
+    border-radius: 5px;   
+    background-color: rgb(249, 255, 182, 0.75);
+    color: #323232;
+}
+
 #switch {
     display: inline; 
 }
