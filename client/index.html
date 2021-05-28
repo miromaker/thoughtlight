@@ -48,7 +48,10 @@
 
   <div id = "requests">
     <h3>Want to compare other words?</h3>
+  
+    <form action="mailto:mirolysyuk@gmail.com" method="GET">
     <button type="button" id="request">Make a request</button>
+  </form>
   </div>
 
   <!-- Footer -->
@@ -114,8 +117,8 @@
         document.getElementById('counter1').innerHTML = word1count;
         document.getElementById('counter2').innerHTML = word2count;
 
-        document.getElementById("light1").style.opacity = ratio1;
-        document.getElementById("light2").style.opacity = ratio2;
+        document.getElementById("light1").style.opacity = ratio1+.001;
+        document.getElementById("light2").style.opacity = ratio2+.001;
 
 
 
