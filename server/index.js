@@ -26,7 +26,7 @@ const streamURL =
   'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id'
 
 // const rules = [{ value: `'${word1} OR ${word2}'`}]
-const rules = [{ value: 'art OR science'}]
+const rules = [{ value: 'sad OR happy'}]
 
 
 // Get stream rules
